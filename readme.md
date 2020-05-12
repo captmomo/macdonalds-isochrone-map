@@ -27,5 +27,5 @@ Added geocoder with results limited to Singapore. [Link to instructions.](https:
 Followed the instructions [here](https://blog.mapbox.com/build-mapbox-gl-js-plugins-74c52f22db63).
 
 ### To do:
-* Figure out why the last listing has differentn styling.
+* ~~Figure out why the last listing has differentn styling.~~ Fixed thanks to u/bigzij!
   
