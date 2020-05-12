@@ -181,10 +181,6 @@
 
         const addListing = function buildLocationList(jsonData, geojsonData) {
             jsonData.forEach(function (store, i) {
-                /**
-                 * Create a shortcut for `store.properties`,
-                 * which will be used several times below.
-                **/
                 var prop = store;
                 /* Add a new listing section to the sidebar. */
                 var listings = document.getElementById('listings');
@@ -248,7 +244,7 @@
                     '<h4>' + currentFeature.properties.address + '</h4>')
                 .addTo(map);
         }
-        const macJson = 'https://gist.githubusercontent.com/captmomo/b19136360712e691c0898c4b34842965/raw/19ca1a06af9b045f6e9af88019b9e53577e1b188/macdonalds.json';
+        const macJson = 'https://raw.githubusercontent.com/captmomo/macdonalds-isochrone-map/master/macdonalds.json';
         const macGeoJson = 'https://gist.githubusercontent.com/captmomo/b19136360712e691c0898c4b34842965/raw/d5e420345edd4fea8555856ca1977be9e5765bf7/mcdonalds.geojson';
         const macIso = 'https://raw.githubusercontent.com/captmomo/macdonalds-isochrone-map/master/mcdisochrone.json';
         const macIso20 = 'https://raw.githubusercontent.com/captmomo/macdonalds-isochrone-map/master/mcdisochrone20.json'
