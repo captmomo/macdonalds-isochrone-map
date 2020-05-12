@@ -19,4 +19,8 @@ Inspired by [Jordan Lim's McDonald's voroni map](https://gitlab.com/jordanlys95/
 ### [Isochrone with Store locator](https://github.com/captmomo/macdonalds-isochrone-map/blob/master/map-sidebar.html)  
 Made with help from the tutorial below, with some modifications.
 * [Tutorial](https://docs.mapbox.com/help/tutorials/building-a-store-locator/#getting-started)
+
+### To do:
+* Adding geocoder
+* Adding travel time toggler
   
