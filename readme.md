@@ -26,6 +26,11 @@ Added geocoder with results limited to Singapore. [Link to instructions.](https:
 ### Custom control to toggle isochrone
 Followed the instructions [here](https://blog.mapbox.com/build-mapbox-gl-js-plugins-74c52f22db63) to create a custom plugin to toggle the coverage.
 
+### Draggable marker to display dynamic isochrone
+Added a draggable marker which will also update location based on geocoder search result. 
+A isochrone will be generated from the marker location based on the current settings (e.g. 10/20/30minutes).  
+This [demo](https://blog.mapbox.com/building-with-isochrones-3dc04a061a84) helped a lot.  
+  
 ### To do:
 * ~~Figure out why the last listing has differentn styling.~~ Fixed thanks to u/bigzij!
   
