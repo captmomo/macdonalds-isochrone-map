@@ -20,7 +20,12 @@ Inspired by [Jordan Lim's McDonald's voroni map](https://gitlab.com/jordanlys95/
 Made with help from the tutorial below, with some modifications.
 * [Tutorial](https://docs.mapbox.com/help/tutorials/building-a-store-locator/#getting-started)
 
+### Geocoder  
+Added geocoder with results limited to Singapore. [Link to instructions.](https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-limit-region/).
+
+### Custom control to toggle isochrone
+Followed the instructions [here](https://blog.mapbox.com/build-mapbox-gl-js-plugins-74c52f22db63).
+
 ### To do:
-* Adding geocoder
-* Adding travel time toggler
+* Figure out why the last listing has differentn styling.
   
