@@ -24,7 +24,7 @@ Made with help from the tutorial below, with some modifications.
 Added geocoder with results limited to Singapore. [Link to instructions.](https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-limit-region/).
 
 ### Custom control to toggle isochrone
-Followed the instructions [here](https://blog.mapbox.com/build-mapbox-gl-js-plugins-74c52f22db63).
+Followed the instructions [here](https://blog.mapbox.com/build-mapbox-gl-js-plugins-74c52f22db63) to create a custom plugin to toggle the coverage.
 
 ### To do:
 * ~~Figure out why the last listing has differentn styling.~~ Fixed thanks to u/bigzij!
