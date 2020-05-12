@@ -19,3 +19,4 @@ Inspired by [Jordan Lim's McDonald's voroni map](https://gitlab.com/jordanlys95/
 ### Isochrone with Store locator  
 Made with help from the tutorial below, with some modifications.
 * [Tutorial](https://docs.mapbox.com/help/tutorials/building-a-store-locator/#getting-started)
+  
