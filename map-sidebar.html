@@ -113,8 +113,6 @@
                 **/
                 var prop = store;
 
-
-
                 /* Add a new listing section to the sidebar. */
                 var listings = document.getElementById('listings');
                 var listing = listings.appendChild(document.createElement('div'));
@@ -131,7 +129,7 @@
                 link.innerHTML = prop.address;
 
                 //add data
-                link.setAttribute("data-name", `${prop.name}`);
+                link.setAttribute("data-name",`${prop.name}`);
 
                 /* Add details to the individual listing. */
                 var details = listing.appendChild(document.createElement('div'));
@@ -141,12 +139,11 @@
                 }
 
                 link.addEventListener('click', function (e) {
-                    for (let i = 0; i < geojsonData.features.length; i++) {
-                        if (this.dataset.name == geojsonData.features[i].properties.name) {
+                    for(let i=0; i < geojsonData.features.length; i++){
+                        if(this.dataset.name == geojsonData.features[i].properties.name){
                             let clickedListing = geojsonData.features[i];
                             console.log(clickedListing);
-                            flyToStore(clickedListing);
-                            createPopUp(clickedListing);
+                            //alert(clickedListing);
                         }
                     }
 
@@ -158,43 +155,12 @@
                 });
             });
         }
-
-        function flyToStore(currentFeature) {
-            map.flyTo({
-                center: currentFeature.geometry.coordinates,
-                zoom: 15
-            });
-        }
-
-        function createPopUp(currentFeature) {
-            var popUps = document.getElementsByClassName('mapboxgl-popup');
-            /** Check if there is already a popup on the map and if so, remove it */
-            if (popUps[0]) popUps[0].remove();
-
-            var popup = new mapboxgl.Popup({ closeOnClick: false })
-                .setLngLat(currentFeature.geometry.coordinates)
-                .setHTML(`<h3>${currentFeature.properties.name}</h3>` +
-                    '<h4>' + currentFeature.properties.address + '</h4>')
-                .addTo(map);
-        }
         const macJson = 'https://gist.githubusercontent.com/captmomo/b19136360712e691c0898c4b34842965/raw/19ca1a06af9b045f6e9af88019b9e53577e1b188/macdonalds.json';
         const macGeoJson = 'https://gist.githubusercontent.com/captmomo/b19136360712e691c0898c4b34842965/raw/d5e420345edd4fea8555856ca1977be9e5765bf7/mcdonalds.geojson';
         const macIso = 'https://gist.githubusercontent.com/captmomo/b19136360712e691c0898c4b34842965/raw/4fe415d3b7fd9a73b99b9c253be5535507769328/mcdisochrone.json';
 
-        const addMarkers = function (jsonData, parsedGeo) {
-
-            parsedGeo.features.forEach(function (store, i) {
-                let geoProp = store.properties;
-                for (let i = 0; i < parsedGeo.features.length; i++) {
-                    if (geoProp.name == jsonData[i].name) {
-                        geoProp.address = jsonData[i].address;
-                        geoProp.id = jsonData[i].id;
-                        //alert(clickedListing);
-                    }
-                };
-            });
-
-            map.addSource("stores", { type: "geojson", data: parsedGeo });
+        const addMarkers = function () {
+            map.addSource("stores", { type: "geojson", data: macGeoJson });
             map.addLayer({
                 id: "stores",
                 type: "circle",
@@ -209,21 +175,10 @@
             });
 
             map.on("click", "stores", function (e) {
-                // new mapboxgl.Popup()
-                //     .setLngLat(e.lngLat)
-                //     .setHTML(e.features[0].properties.name)
-                //     .addTo(map);
-                let clickedPoint = e.features[0];
-                flyToStore(clickedPoint);
-                createPopUp(clickedPoint);
-
-                let activeListing = document.getElementsByClassName('active');
-                if(activeListing[0]){
-                    activeListing.classList.remove('active');
-                }
-                console.log(clickedPoint.properties);
-                let listing = document.getElementById('listing-' + clickedPoint.properties.id);;
-                listing.classList.add('active');
+                new mapboxgl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(e.features[0].properties.name)
+                    .addTo(map);
             });
 
 
@@ -231,18 +186,17 @@
         }
         const geoJsonArray = { features: [] };
 
-        const fetchJson = function getJson(url) {
+        const fetchJson = function getJson(url){
             return fetch(url)
                 .then(res => res.json());
 
         };
-        const getListingData = function () {
+        const getListingData = function() {
             let plain = fetchJson(macJson);
             let geoInfo = fetchJson(macGeoJson);
 
-            Promise.all([plain, geoInfo]).then(values => {
+            Promise.all([plain, geoInfo]).then(values =>{
                 addListing(values[0], values[1]);
-                addMarkers(values[0], values[1]);
             });
         };
         map.on('load', function () {
@@ -251,7 +205,7 @@
                 .then(res => res.json())
                 .then(result => {
                     addCronuts(result.features);
-                    //addMarkers();
+                    addMarkers();
 
                 });
             getListingData();
