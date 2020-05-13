@@ -442,6 +442,11 @@
                         default:
                             console.log("uh oh");
                     }
+                    var activeItem = document.getElementsByClassName('selected');
+                    if (activeItem[0]) {
+                        activeItem[0].classList.remove('selected');
+                    }
+                    e.target.classList.add('selected');
                     updateDraggableIso(isoAppData.origins.a)
                 });
             };

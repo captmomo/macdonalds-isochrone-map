@@ -7,7 +7,7 @@ toggleControl.prototype.onAdd = function(map){
     this._container.className = 'mapboxgl-ctrl custom';
     this._container.innerHTML = `
     <div class='heading'><h2>Toggle travel time (mins)</h3></div>
-    <span class='toggle-option' data-value='10'>10</span>
+    <span class='toggle-option selected' data-value='10'>10</span>
     <span class='toggle-option' data-value='20'>20</span>
     <span class='toggle-option' data-value='30'>30</span>`
     return this._container;
