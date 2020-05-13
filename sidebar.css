@@ -88,7 +88,7 @@ a:hover {
 .listings .item.active .listingTitle,
 .listings .item .listingTitle:hover { color: #ffffff; }
 
-.listings .item.active {
+.listings .item.active, .toggle-option.selected {
   background-color: #6c6c6c;
 }
 
