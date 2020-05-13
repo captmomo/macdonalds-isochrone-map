@@ -5,6 +5,9 @@
     <meta charset='utf-8' />
     <title>Isochrone Map - Singapore MacDonalds coverage based on travel time (walking)</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <!--import bulma-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <!-- Import Mapbox GL JS  -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
@@ -21,6 +24,9 @@
     <script src='custom-control.js' type="text/javascript"></script>
 
     <style>
+        html{
+            background-color: #323432;
+        }
         .custom {
             height: 100%;
             overflow: auto;
@@ -36,10 +42,28 @@
             color: #c2e2c2;
             text-align: center;
         }
+
+        .columns.is-fullheight {
+            min-height: calc(100vh - .25rem );
+            max-height: calc(100vh - .25rem );
+            height: calc(100vh - .25rem );
+            display: flex;
+            flex-direction: row;
+            justify-content: stretch;
+        }
+
+        .columns.is-fullheight .column {
+            overflow-y: auto;
+        }
+
+        .menu-label{
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
+
     <!--Import geocoder styles and script-->
     <script
         src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
@@ -49,15 +73,20 @@
     <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-    <!--Create a sidebar for store listing-->
-    <div class='sidebar'>
-        <div class='heading'>
-            <h1>MacDonald's locations</h1>
+    <div class='columns is-fullheight is-gapless'>
+        <div class='column is-2 is-sidebar-menu is-hidden-mobile'>
+            <div class='sidebar'>
+                <!--Create a sidebar for store listing-->
+                <div class='menu-label'>
+                    <h1>MacDonald's locations</h1>
+                </div>
+                <div id='listings' class='listings'></div>
+            </div>
         </div>
-        <div id='listings' class='listings'></div>
+        <!-- Create a container for the map -->
+        <div id='map' class="map column"></div>
     </div>
-    <!-- Create a container for the map -->
-    <div id='map' class="map"></div>
+
 
     <script>
         // Add your Mapbox access token
@@ -210,7 +239,7 @@
                 /* Add the link to the individual listing created above. */
                 var link = listing.appendChild(document.createElement('a'));
                 link.href = '#';
-                link.className = 'title';
+                link.className = 'listingTitle';
                 link.id = "link-" + prop.id;
                 link.innerHTML = prop.address;
 
@@ -387,7 +416,7 @@
             geocoder.on("result", ev => {
                 const resultLon = ev.result.geometry.coordinates[0];
                 const resultLat = ev.result.geometry.coordinates[1];
-                isoAppData.origins.a = [resultLon , resultLat ];
+                isoAppData.origins.a = [resultLon, resultLat];
                 // eslint-disable-next-line no-use-before-define
                 originA.setLngLat(isoAppData.origins.a);
                 // eslint-disable-next-line no-use-before-define
