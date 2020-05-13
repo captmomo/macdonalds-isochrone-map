@@ -18,15 +18,16 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 
     <!-- Import style for map with sidebar-->
-    <link href="sidebar.css" rel="stylesheet" type="text/css" />
+    <link href="sidebar-responsive.css" rel="stylesheet" type="text/css" />
 
     <!--Import custom control-->
     <script src='custom-control.js' type="text/javascript"></script>
 
     <style>
-        html{
+        html {
             background-color: #323432;
         }
+
         .custom {
             height: 100%;
             overflow: auto;
@@ -44,9 +45,9 @@
         }
 
         .columns.is-fullheight {
-            min-height: calc(100vh - .25rem );
-            max-height: calc(100vh - .25rem );
-            height: calc(100vh - .25rem );
+            min-height: calc(100vh - .25rem);
+            max-height: calc(100vh - .25rem);
+            height: calc(100vh - .25rem);
             display: flex;
             flex-direction: row;
             justify-content: stretch;
@@ -56,7 +57,7 @@
             overflow-y: auto;
         }
 
-        .menu-label{
+        .menu-label {
             text-align: center;
         }
     </style>
@@ -396,6 +397,14 @@
                 addMarkers(values[0], values[1]);
             });
         };
+
+        const toggleElement = function toggleActiveElement(element, className) {
+            var activeItem = document.getElementsByClassName(className);
+            if (activeItem[0]) {
+                activeItem[0].classList.remove(className);
+            }
+            element.classList.add(className);
+        }
         map.on('load', function () {
             // When the map loads, add the source and layer
             fetch(macIso)
@@ -442,15 +451,12 @@
                         default:
                             console.log("uh oh");
                     }
-                    var activeItem = document.getElementsByClassName('selected');
-                    if (activeItem[0]) {
-                        activeItem[0].classList.remove('selected');
-                    }
-                    e.target.classList.add('selected');
+                    toggleElement(e.target, 'selected');
                     updateDraggableIso(isoAppData.origins.a)
                 });
             };
         });
+
     </script>
 </body>
 

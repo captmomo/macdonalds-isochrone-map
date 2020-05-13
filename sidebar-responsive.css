@@ -30,8 +30,8 @@ a:hover {
 }
 
 .sidebar {
-  position: absolute;
-  width: 33.3333%;
+  /* position: absolute; */
+  /* width: 33.3333%; */
   height: 100%;
   top: 0;
   left: 0;
@@ -44,9 +44,9 @@ a:hover {
 }
 
 .map {
-position: absolute;
-left: 33.3333%;
-  width: 66.6666%;
+  /* position: absolute; */
+  /* left: 33.3333%;
+  width: 66.6666%; */
   top: 0;
   bottom: 0;
 }
@@ -77,16 +77,16 @@ left: 33.3333%;
 
 .listings .item:last-child { border-bottom: none; }
 
-.listings .item .title {
+.listings .item .listingTitle {
   display: block;
   color: #c3c3c3;
   font-weight: 700;
 }
 
-.listings .item .title small { font-weight: 400; }
+.listings .item .listingTitle small { font-weight: 400; }
 
-.listings .item.active .title,
-.listings .item .title:hover { color: #ffffff; }
+.listings .item.active .listingTitle,
+.listings .item .listingTitle:hover { color: #ffffff; }
 
 .listings .item.active, .toggle-option.selected {
   background-color: #6c6c6c;
