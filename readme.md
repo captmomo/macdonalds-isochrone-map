@@ -30,6 +30,10 @@ Followed the instructions [here](https://blog.mapbox.com/build-mapbox-gl-js-plug
 Added a draggable marker which will also update location based on geocoder search result. 
 A isochrone will be generated from the marker location based on the current settings (e.g. 10/20/30minutes).  
 This [demo](https://blog.mapbox.com/building-with-isochrones-3dc04a061a84) helped a lot.  
+
+### turf.js practice
+
+Followed the following [example](https://docs.mapbox.com/help/tutorials/analysis-with-turf/). The mac location nearest to the draggable marker will be highlighted with a red circle. This is determined by using turf.nearest(point, featureCollection).
   
 ### To do:
 * ~~Figure out why the last listing has differentn styling.~~ Fixed thanks to u/bigzij!
