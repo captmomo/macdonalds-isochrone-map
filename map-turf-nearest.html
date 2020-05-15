@@ -24,7 +24,7 @@
     <script src='custom-control.js' type="text/javascript"></script>
 
     <!--import turf-->
-    <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
 
 
     <style>
@@ -305,6 +305,8 @@
         const macIso30 = 'https://raw.githubusercontent.com/captmomo/macdonalds-isochrone-map/master/mcdisochrone30.json'
 
         //set up for draggables
+        // turf.featureCollection([]); <<- creates empty feature collection
+        // turf.featureCollection([turf.point(warehouseLocation)]); <<- initialize feature collection with single point
         const setUpDraggables = function () {
             map.addSource("draggable", {
                 type: "geojson",
@@ -407,23 +409,13 @@
 
 
             //create a feature using passed in point
-            var point = {
-                "type": "Feature",
-                "properties": {
-                    "marker-color": "#0f0"
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [origins[0], origins[1]]
-                }
-            };
+            var point = turf.point([origins[0], origins[1]]);
             console.log(point);
-            ;
 
             //get all rendered features from stores
             fetchJson(macGeoJson)
                 .then(result => {
-                    let nearestMacs = turf.nearest(point, result);
+                    let nearestMacs = turf.nearestPoint(point, result);
                     // If a nearest library is found
                     if (nearestMacs !== null) {
                         // Update the 'nearest-library' data source to include
@@ -481,12 +473,12 @@
             //sets up store listing 
             getListingData();
             
+            //sets up nearest
+            setUpNearest();
             //set up draggables
             setUpDraggables();
             setUpDraggableMarker();
 
-            //sets up nearest
-            setUpNearest();
 
             //set up draggable to respond to geocoder search
             geocoder.on("result", ev => {

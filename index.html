@@ -471,12 +471,13 @@
             //sets up store listing 
             getListingData();
             
+            //sets up nearest
+            setUpNearest();
+            
             //set up draggables
             setUpDraggables();
             setUpDraggableMarker();
 
-            //sets up nearest
-            setUpNearest();
 
             //set up draggable to respond to geocoder search
             geocoder.on("result", ev => {
