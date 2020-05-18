@@ -369,8 +369,8 @@
                 id: "stores",
                 type: "symbol",
                 source: "stores",
-                layout:{
-                    'icon-image':'fast-food-15'
+                layout: {
+                    'icon-image': 'fast-food-15'
                 }
             });
 
@@ -470,10 +470,10 @@
 
             //sets up store listing 
             getListingData();
-            
+
             //sets up nearest
             setUpNearest();
-            
+
             //set up draggables
             setUpDraggables();
             setUpDraggableMarker();
@@ -516,6 +516,15 @@
             };
         });
 
+        //init collapsible
+        document.addEventListener('DOMContentLoaded', function () {
+            let cardToggles = document.getElementsByClassName('control-toggle');
+            for (let i = 0; i < cardToggles.length; i++) {
+                cardToggles[i].addEventListener('click', e => {
+                    document.getElementsByClassName('control-content').item(0).classList.toggle('is-hidden');
+                });
+            }
+        });
     </script>
 </body>
 
