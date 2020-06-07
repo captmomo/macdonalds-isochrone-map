@@ -4,6 +4,8 @@
 <head>
     <meta charset='utf-8' />
     <title>Get started with the Isochrone API</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <!-- Import Mapbox GL JS  -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
@@ -35,6 +37,10 @@
             text-decoration: none;
             color: #c2e2c2;
             text-align: center;
+        }
+
+        .listingTitle{
+            color: #ffffff;
         }
     </style>
 </head>
@@ -193,7 +199,7 @@
                 /* Add the link to the individual listing created above. */
                 var link = listing.appendChild(document.createElement('a'));
                 link.href = '#';
-                link.className = 'title';
+                link.className = 'listingTitle';
                 link.id = "link-" + prop.id;
                 link.innerHTML = prop.address;
 
@@ -343,8 +349,32 @@
                         default:
                             console.log("uh oh");
                     }
+                    toggleElement(e.target, 'selected');
+                    updateDraggableIso(isoAppData.origins.a)
                 });
             };
+        });
+        const updateDraggableIso = function (position) {
+            getIso(position)
+                .then(result => {
+                    isoAppData.isos.a = result;
+                    map.getSource('draggable').setData(isoAppData.isos.a);
+                })
+        }
+        const toggleElement = function toggleActiveElement(element, className) {
+            var activeItem = document.getElementsByClassName(className);
+            if (activeItem[0]) {
+                activeItem[0].classList.remove(className);
+            }
+            element.classList.add(className);
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            let cardToggles = document.getElementsByClassName('control-toggle');
+            for (let i = 0; i < cardToggles.length; i++) {
+                cardToggles[i].addEventListener('click', e => {
+                    document.getElementsByClassName('control-content').item(0).classList.toggle('is-hidden');
+                });
+            }
         });
     </script>
 </body>
